@@ -1,0 +1,39 @@
+class Solution{
+ public:
+    int sumK(Node* root, int k) {
+        unordered_map<int, int> sumFrequency;
+        int count = 0;
+        int currentSum = 0;
+        solve(root, k, count, sumFrequency, currentSum);
+        return count;
+    }
+
+private:
+    void solve(Node* root, int k, int& count, unordered_map<int, int>& sumFrequency, int currentSum) {
+        if (root == NULL)
+            return;
+
+        currentSum += root->data;
+
+        if (currentSum == k) {
+            // Increment count if the current path has a sum equal to k
+            count++;
+        }
+
+        if (sumFrequency.find(currentSum - k) != sumFrequency.end()) {
+            // If there exists a subarray with sum equal to k, add its frequency to count
+            count += sumFrequency[currentSum - k];
+        }
+
+        // Increment the frequency of the current sum
+        sumFrequency[currentSum]++;
+
+        // Recur for left and right subtrees
+        solve(root->left, k, count, sumFrequency, currentSum);
+        solve(root->right, k, count, sumFrequency, currentSum);
+
+        // Decrement the frequency as we backtrack
+        sumFrequency[currentSum]--;
+    }
+    
+};
