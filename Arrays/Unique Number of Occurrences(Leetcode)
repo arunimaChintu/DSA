@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        vector<int> count;
+       int size = arr.size();
+       sort(arr.begin(), arr.end());
+       int i;
+       for (i = 0; i < size; i++) {
+           int counting = 1;
+
+           // Change 'i< size' to 'j < size'
+           for (int j = i + 1; j < size; j++) {
+               if (arr[i] == arr[j]) {
+                   counting++;
+               } else {
+                   break; // Break when different element is encountered
+               }
+           }
+           count.push_back(counting);
+           
+           // Skip the same elements to avoid redundant counting
+           i += counting - 1;
+       }
+
+       size = count.size();
+       sort(count.begin(), count.end());
+       for (i = 0; i < size - 1; i++) {
+           if (count[i] == count[i + 1]) {
+               return false;
+           }
+       }
+
+       return true;
+    }
+};
