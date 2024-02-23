@@ -1,5 +1,8 @@
 #include<vector>
 using namespace std;
+
+//take the smallest element and put it in correct position
+
 void selectionSort(vector<int>& arr, int n)
 {   
     for(int i = 0; i < n-1; i++ ) {
