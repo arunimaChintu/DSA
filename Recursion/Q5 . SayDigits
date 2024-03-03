@@ -1,0 +1,19 @@
+#include<iostream>
+using  namespace std;
+
+void func(string arr[],int num){
+    if(num==0){
+        return;
+    }
+    int digit = num%10;
+    num= num/10;
+    func(arr,num);
+    cout<< arr[digit]<<" ";
+    
+}
+
+int main(){
+    string arr[] = {"zero","one","two","three","four","five","six","seven","eight","nine","ten"};
+    int num = 432;
+    func(arr,num);
+}
