@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+bool BS(int arr[], int s, int e, int k){
+    //base case
+    if(s>e)
+      return false;
+    int mid = s + (e-s)/2;
+    
+    if(arr[mid] == k){
+        return true;
+    }
+    if(arr[mid]<k){
+       return  BS(arr,mid+1,e,k);
+    }
+    else{
+        return BS(arr,s,mid-1,k);
+    }
+}
+int main(){
+    int arr[] = {1,2,3,4,5};
+    int k = 5;
+    int start = 0;
+    int end = (sizeof(arr)/sizeof(int) ) - 1;
+    bool ans = BS(arr,start,end,k);
+    if(ans){
+        cout<<"key is present";
+    }
+    else{
+        cout<<"key is not present";
+    }
+}
