@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+
+bool LS(int arr[],int size,int k){
+    //base
+    if(size==0)
+      return false;
+    if(arr[0] == k){//baaki recursion dekh lega
+        return true;
+    }
+    else{
+        bool remainingpart = LS(arr+1,size-1,k);
+        return remainingpart;
+    }
+}
+int main(){
+     int arr[] = {1,2,3,4,5};
+     int key = 3;
+    int ans = LS(arr,5,key);
+    if(ans){
+        cout<<"key is present";
+    }
+    else{
+        cout<<"key is not present";
+    }
+}
